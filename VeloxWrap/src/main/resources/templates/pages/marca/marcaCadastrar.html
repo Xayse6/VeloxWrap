@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{homeScreen/fragments/header :: header(
+        ${marca != null and marca.idMarca > 0}
+        ? 'Alterar Marca'
+        : 'Criar Marca')}">
+
+</head>
+
+<link rel="stylesheet" th:href="@{/css/marcaCadastrar.css}">
+
+<body>
+
+<nav th:replace="~{homeScreen/fragments/menu :: menu}"></nav>
+
+<div class="container py-5 mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-5 col-md-7">
+
+            <div class="glass-card text-white p-5">
+
+                <h2 class="text-center mb-5 text-info fw-bold"
+                    style="text-shadow: 0 0 30px #00d4ff;">
+
+                    <span th:if="${marca != null and marca.idMarca > 0}">
+                        Alterar Marca
+                    </span>
+
+                    <span th:unless="${marca != null and marca.idMarca > 0}">
+                        Cadastrar Marca
+                    </span>
+
+                </h2>
+
+                <form id="formMarca">
+
+                    <!-- ID -->
+                    <input type="hidden"
+                           id="idMarca"
+                           name="idMarca"
+                           th:value="${marca.idMarca}">
+
+                    <!-- NOME MARCA -->
+                    <div class="mb-4">
+                        <label class="form-label">Nome da Marca</label>
+                        <input type="text"
+                               id="nomeMarca"
+                               name="nomeMarca"
+                               class="form-control form-control-lg bg-transparent text-white border-info"
+                               placeholder="Nome da marca"
+                               th:value="${marca.nomeMarca}"
+                               required>
+                    </div>
+
+                    <!-- SIGLA -->
+                    <div class="mb-4">
+                        <label class="form-label">Sigla</label>
+                        <input type="text"
+                               id="siglaMarca"
+                               name="siglaMarca"
+                               class="form-control form-control-lg bg-transparent text-white border-info"
+                               placeholder="Ex: BMW, VW, GM"
+                               maxlength="10"
+                               th:value="${marca.siglaMarca}"
+                               required>
+                    </div>
+
+                    <!-- BOTÕES -->
+                    <div class="text-center mt-4">
+
+                        <button class="btn btn-outline-info btn-lg px-5 border-2 fw-bold me-3"
+                                type="submit">
+
+                            <span th:if="${marca != null and marca.idMarca > 0}">
+                                Atualizar Marca
+                            </span>
+
+                            <span th:unless="${marca != null and marca.idMarca > 0}">
+                                Cadastrar Marca
+                            </span>
+
+                        </button>
+
+                        <a href="/marcas"
+                           class="btn btn-outline-danger btn-lg px-5 border-2 fw-bold">
+                            Cancelar
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script th:src="@{/js/marca/marcaCadastrar.js}"></script>
+
+<footer th:replace="~{homeScreen/fragments/footer :: footer}"></footer>
+
+</body>
+</html>

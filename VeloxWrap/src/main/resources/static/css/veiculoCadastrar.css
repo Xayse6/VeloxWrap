@@ -1,0 +1,84 @@
+body {
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
+
+}
+
+body::before {
+
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background:
+            url('/img/principal.jpg')
+            center center / cover
+            no-repeat fixed;
+
+    z-index: -2;
+
+}
+
+body::after {
+
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    z-index: -1;
+
+}
+
+.glass-card {
+
+    background: rgba(15, 15, 35, 0.78);
+
+    backdrop-filter: blur(16px);
+
+    border: 1px solid rgba(0, 212, 255, 0.35);
+
+    border-radius: 22px;
+
+    box-shadow:
+            0 15px 40px rgba(0,0,0,0.60);
+
+}
+
+.title-glow {
+
+    text-shadow:
+            0 0 15px #00d4ff,
+            0 0 30px #00d4ff;
+
+}
+
+.form-control:focus,
+.form-select:focus {
+
+    background: transparent;
+    color: white;
+
+    border-color: #00d4ff;
+
+    box-shadow:
+            0 0 12px rgba(0,212,255,0.5);
+
+}
+
+.form-control::placeholder {
+
+    color: rgba(255,255,255,0.65);
+
+}
+
+.form-select option {
+
+    background-color: #0f172a;
+    color: white;
+
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{homeScreen/fragments/header :: header(
+    ${modelo != null and modelo.idModelo > 0}
+    ? 'Alterar Modelo'
+    : 'Cadastrar Modelo'
+)}">
+</head>
+
+<body>
+
+<nav th:replace="~{homeScreen/fragments/menu :: menu}"></nav>
+
+<div class="container py-5 mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-5 col-md-7 col-sm-11">
+
+            <div class="glass-card text-white p-5">
+
+                <!-- TÍTULO -->
+                <h2 class="text-center mb-5 text-info fw-bold title-glow">
+
+                    <span th:if="${modelo != null and modelo.idModelo > 0}">
+                        Alterar Modelo
+                    </span>
+
+                    <span th:unless="${modelo != null and modelo.idModelo > 0}">
+                        Cadastrar Modelo
+                    </span>
+
+                </h2>
+
+                <!-- FORM -->
+                <form id="formModelo" method="post">
+
+                    <!-- ID -->
+                    <input type="hidden"
+                           id="idModelo"
+                           name="idModelo"
+                           th:value="${modelo != null ? modelo.idModelo : ''}">
+
+                    <!-- MARCA -->
+                    <div class="mb-4">
+
+                        <label for="marca" class="form-label">
+                            Marca
+                        </label>
+
+                        <select id="marca"
+                                name="marca"
+                                class="form-select form-select-lg bg-transparent text-white border-info custom-select"
+                                required>
+
+                            <option value="">
+                                Selecione uma marca
+                            </option>
+
+                            <option th:each="m : ${marcas}"
+                                    th:value="${m.idMarca}"
+                                    th:text="${m.nomeMarca}"
+                                    th:selected="${modelo != null
+                                        and modelo.marca != null
+                                        and modelo.marca.idMarca == m.idMarca}">
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- NOME MODELO -->
+                    <div class="mb-4">
+
+                        <label for="nomeModelo" class="form-label">
+                            Nome do Modelo
+                        </label>
+
+                        <input type="text"
+                               id="nomeModelo"
+                               name="nomeModelo"
+                               class="form-control form-control-lg bg-transparent text-white border-info"
+                               placeholder="Digite o nome do modelo"
+                               th:value="${modelo != null ? modelo.nomeModelo : ''}"
+                               autocomplete="off"
+                               required>
+
+                    </div>
+
+                    <!-- ANO -->
+                    <div class="mb-4">
+
+                        <label for="anoLancamento" class="form-label">
+                            Ano de Lançamento
+                        </label>
+
+                        <input type="number"
+                               id="anoLancamento"
+                               name="anoLancamento"
+                               class="form-control form-control-lg bg-transparent text-white border-info"
+                               placeholder="Ex: 2026"
+                               min="1886"
+                               th:max="${T(java.time.Year).now().value}"
+                               th:value="${modelo != null ? modelo.anoLancamento : ''}"
+                               required>
+
+                    </div>
+
+                    <!-- BOTÕES -->
+                    <div class="text-center mt-5">
+
+                        <button type="submit"
+                                class="btn btn-outline-info btn-lg px-5 border-2 fw-bold me-3">
+
+                            <span th:if="${modelo != null and modelo.idModelo > 0}">
+                                Atualizar Modelo
+                            </span>
+
+                            <span th:unless="${modelo != null and modelo.idModelo > 0}">
+                                Cadastrar Modelo
+                            </span>
+
+                        </button>
+
+                        <a href="/modelos"
+                           class="btn btn-outline-danger btn-lg px-5 border-2 fw-bold">
+
+                            Cancelar
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script th:src="@{/js/modelo/modeloCadastrar.js}"></script>
+
+<style>
+
+    body {
+
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        color: white;
+
+    }
+
+    body::before {
+
+        content: "";
+        position: fixed;
+        inset: 0;
+
+        background:
+                url('/img/principal.jpg')
+                center center / cover
+                no-repeat fixed;
+
+        z-index: -2;
+
+    }
+
+    body::after {
+
+        content: "";
+        position: fixed;
+        inset: 0;
+
+        background: rgba(0, 0, 0, 0.55);
+
+        z-index: -1;
+
+    }
+
+    .glass-card {
+
+        background: rgba(15, 15, 35, 0.78);
+
+        backdrop-filter: blur(16px);
+
+        border: 1px solid rgba(0, 212, 255, 0.35);
+
+        border-radius: 22px;
+
+        box-shadow:
+                0 15px 40px rgba(0,0,0,0.60);
+
+    }
+
+    .title-glow {
+
+        text-shadow:
+                0 0 15px #00d4ff,
+                0 0 30px #00d4ff;
+
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+
+        background: transparent;
+        color: white;
+
+        border-color: #00d4ff;
+
+        box-shadow:
+                0 0 12px rgba(0,212,255,0.5);
+
+    }
+
+    .form-control::placeholder {
+
+        color: rgba(255,255,255,0.65);
+
+    }
+
+    .form-select option {
+
+        background-color: #0f172a;
+        color: white;
+
+    }
+
+</style>
+
+<footer th:replace="~{homeScreen/fragments/footer :: footer}"></footer>
+
+</body>
+</html>

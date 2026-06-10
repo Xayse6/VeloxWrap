@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{homeScreen/fragments/header :: header('Home')}"></head>
+
+<body>
+
+<div th:replace="~{homeScreen/fragments/menu :: menu}"></div>
+
+<!-- HERO -->
+<div class="bg-principal">
+
+    <div class="hero-content">
+
+        <h1>Velox Wrap</h1>
+
+        <div th:if="${session.cliente != null}">
+
+            <a th:href="@{/dashboard}"
+               class="btn btn-info btn-lg px-5">
+                Dashboard
+            </a>
+
+        </div>
+
+        <div th:unless="${session.cliente != null}">
+
+            <a th:href="@{/galeria}"
+               class="btn btn-outline-info btn-lg px-5">
+                Ver Galeria
+            </a>
+
+            <a th:href="@{/NovoUsuario}"
+               class="btn btn-outline-info btn-lg px-5">
+                Começar Agora
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- SERVIÇOS -->
+<div class="container py-5 my-5">
+
+    <div class="row g-5 justify-content-center">
+
+        <div class="col-md-4">
+
+            <div class="card bg-dark text-white text-center p-5 shadow-lg">
+
+                <i class="fas fa-paint-roller fa-4x text-info mb-4"></i>
+
+                <h4>Envelopamento Líquido</h4>
+
+                <p>Cor nova sem danificar a pintura</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card bg-dark text-white text-center p-5 shadow-lg">
+
+                <i class="fas fa-film fa-4x text-info mb-4"></i>
+
+                <h4>Película PPF</h4>
+
+                <p>Proteção invisível contra riscos</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card bg-dark text-white text-center p-5 shadow-lg">
+
+                <i class="fas fa-tools fa-4x text-info mb-4"></i>
+
+                <h4>Personalização Total</h4>
+
+                <p>Tudo do seu jeito</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+    body::before {
+
+        content: "";
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        background:
+                url('/img/principal.jpg')
+                center center / cover no-repeat fixed;
+
+        z-index: -2;
+    }
+
+    body::after {
+
+        content: "";
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        background: rgba(0,0,0,0.6);
+
+        z-index: -1;
+    }
+
+    .bg-principal {
+
+        min-height: 100vh;
+
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+
+        color: white;
+    }
+
+    .hero-content h1 {
+
+        font-size: 7rem;
+
+        color: #00d4ff;
+
+        text-shadow: 0 0 50px #00d4ff;
+    }
+
+</style>
+
+<div th:replace="~{homeScreen/fragments/footer :: footer}"></div>
+
+</body>
+</html>

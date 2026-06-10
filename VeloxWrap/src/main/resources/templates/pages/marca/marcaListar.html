@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="~{homeScreen/fragments/header :: header('Marcas')}"></th:block>
+</head>
+
+<body>
+
+<nav th:replace="~{homeScreen/fragments/menu :: menu}"></nav>
+
+<div class="container-fluid mt-4">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+
+            <h1 class="h3 mb-2 text-gray-800">Marcas</h1>
+            <p class="mb-4">Gerenciamento completo de marcas do sistema</p>
+
+            <a class="btn btn-success mb-3"
+               th:href="@{/NovaMarca}">
+                <i class="fas fa-user-plus"></i>
+                Nova Marca
+            </a>
+        </div>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table id="datatable" class="table table-bordered table-hover" width="100%">
+
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Sigla</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="marca : ${marcas}">
+
+                        <td class="text-center" th:text="${marca.idMarca}">
+                        </td>
+
+                        <td th:text="${marca.nomeMarca}">
+                        </td>
+
+                        <td th:text="${marca.siglaMarca}">
+                        </td>
+
+                        <td class="text-center">
+
+                            <a th:href="@{/marca/editar/{id}(id=${marca.idMarca})}"
+                               class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
+                            <button class="btn btn-danger btn-sm"
+                                    th:onclick="'deletar(' + ${marca.idMarca} + ')'">
+                                <i class="fas fa-trash"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/marca/marcaListar.js}"></script>
+<footer th:replace="~{homeScreen/fragments/footer :: footer}"></footer>
+
+</body>
+</html>

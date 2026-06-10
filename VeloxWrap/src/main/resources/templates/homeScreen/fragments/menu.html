@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<nav th:fragment="menu"
+     class="navbar navbar-expand-lg sticky-top"
+     style="background: rgba(10, 10, 25, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,212,255,0.4);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6);">
+
+    <div class="container">
+
+        <a class="navbar-brand d-flex align-items-center"
+           th:href="@{/}">
+
+            <img th:src="@{/img/logo.png}"
+                 height="55"
+                 class="me-3 rounded-3 shadow-lg">
+
+            <span class="fw-bold fs-3 text-info"
+                  style="text-shadow:0 0 30px #00d4ff;">
+                Velox Wrap
+            </span>
+
+        </a>
+
+        <button class="navbar-toggler border-info"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-center gap-4">
+
+                <li class="nav-item">
+                    <a class="nav-link text-white"
+                       th:href="@{/galeria}">
+                        Galeria
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white"
+                       th:href="@{/servicos}">
+                        Serviços
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white"
+                       th:href="@{/contato}">
+                        Contato
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/NovoUsuario}"
+                       class="btn btn-outline-info">
+                        Cadastro
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/usuarios}"
+                       class="btn btn-outline-info">
+                        Usuários
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/veiculos}"
+                       class="btn btn-outline-info">
+                        Veiculos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/modelos}"
+                       class="btn btn-outline-info">
+                        Modelos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/marcas}"
+                       class="btn btn-outline-info">
+                        Marcas
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+</body>
+</html>
